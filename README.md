@@ -40,9 +40,31 @@ To learn more about Next.js, take a look at the following resources:
 -   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 -   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
+This application is deployed on [Vercel](https://vercel.com).
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# shiner-shenanigans
+**Live URL:** https://shiner-shenanigans-aynxkpq8c-raymond-shiners-projects.vercel.app
+
+### Deploy Updates
+
+To deploy updates to Vercel:
+
+```bash
+# Deploy to preview
+npx vercel
+
+# Deploy to production
+npx vercel --prod
+```
+
+The application is automatically deployed when you push to the `main` branch on GitHub.
+
+### Manual Deployment
+
+You can also deploy through the [Vercel Dashboard](https://vercel.com/raymond-shiners-projects/shiner-shenanigans/settings) where you can:
+
+-   Configure custom domains
+-   Set environment variables
+-   View deployment logs
+-   Manage build settings
