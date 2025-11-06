@@ -1,3 +1,5 @@
+import PasswordProtection from "@/components/PasswordProtection";
+import { checkAuth } from "@/lib/auth";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -6,14 +8,20 @@ export const metadata: Metadata = {
   description: "A simple Next.js application",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isAuthenticated = await checkAuth();
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <PasswordProtection isAuthenticated={isAuthenticated}>
+          {children}
+        </PasswordProtection>
+      </body>
     </html>
   );
 }
