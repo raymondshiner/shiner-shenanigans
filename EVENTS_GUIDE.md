@@ -26,10 +26,14 @@ This website is designed to host and manage events at your home. The system uses
 -   Full event information including:
     -   Title and description
     -   Date and time
-    -   RSVP count showing how many people have responded
+    -   Complete RSVP list with names and party sizes
+    -   Total guest count automatically calculated
     -   Event tags for easy categorization
     -   Status badges (upcoming, completed, cancelled)
-    -   RSVP button for upcoming events
+    -   **Interactive RSVP form** for upcoming events where guests can:
+        -   Enter their name or group name
+        -   Select their party size (1-20 people)
+        -   Submit their RSVP
 
 ## Managing Events
 
@@ -44,7 +48,11 @@ Events are stored in `/data/events.json`. To manage events, simply edit this fil
     "description": "Detailed description of the event",
     "date": "2025-12-25",
     "time": "7:00 PM",
-    "rsvpCount": 5,
+    "rsvps": [
+        { "name": "John & Sarah", "partySize": 2 },
+        { "name": "The Smiths", "partySize": 4 },
+        { "name": "Alex", "partySize": 1 }
+    ],
     "tags": ["holiday", "dinner", "celebration"],
     "status": "upcoming"
 }
@@ -57,7 +65,9 @@ Events are stored in `/data/events.json`. To manage events, simply edit this fil
 -   **description**: Detailed event description
 -   **date**: Date in YYYY-MM-DD format
 -   **time**: Time in any readable format (e.g., "7:00 PM")
--   **rsvpCount** (optional): Number of people who have RSVPed
+-   **rsvps** (optional): Array of RSVP objects with:
+    -   **name**: Name of the person/group RSVPing
+    -   **partySize**: Number of people in their party
 -   **tags** (optional): Array of tags for categorization
 -   **status**: Event status - `upcoming`, `ongoing`, `completed`, or `cancelled`
 
@@ -71,10 +81,41 @@ Events are stored in `/data/events.json`. To manage events, simply edit this fil
 ## Tips for Managing Events
 
 1. **Keep the date format consistent**: Always use YYYY-MM-DD
-2. **Update RSVP counts**: Manually update `rsvpCount` as people RSVP to events
-3. **Use descriptive tags**: Tags help categorize events (e.g., "games", "food", "holiday")
-4. **Change status after events**: Update from `upcoming` to `completed` after events finish
-5. **Unique IDs**: Make sure each event has a unique ID (use numbers or descriptive names)
+2. **Add RSVPs as they come in**: Add new RSVP objects to the `rsvps` array with the person's name and party size
+3. **Track party sizes**: The system automatically calculates total guests from all party sizes
+4. **Use descriptive tags**: Tags help categorize events (e.g., "games", "food", "holiday")
+5. **Change status after events**: Update from `upcoming` to `completed` after events finish
+6. **Unique IDs**: Make sure each event has a unique ID (use numbers or descriptive names)
+
+### Adding an RSVP
+
+**Option 1: Using the RSVP Form (Guests)**
+
+Guests can use the interactive RSVP form on each event's detail page:
+
+1. Navigate to the event page
+2. Scroll to the RSVP form at the bottom
+3. Enter their name/group name
+4. Select party size using +/- buttons or direct input
+5. Click "Submit RSVP"
+
+**Note:** Since this is a static site, RSVPs submitted through the form need to be manually added to the `events.json` file by the administrator.
+
+**Option 2: Manual Entry (Administrators)**
+
+To manually add someone's RSVP to an event, add a new object to the `rsvps` array in `/data/events.json`:
+
+```json
+{
+    "name": "Taylor & Jamie",
+    "partySize": 2
+}
+```
+
+The event cards and details pages will automatically show:
+
+-   Number of RSVPs (how many entries in the array)
+-   Total guest count (sum of all party sizes)
 
 ## Customization
 
@@ -94,11 +135,12 @@ The site uses Tailwind CSS. To customize colors or styles:
 
 Potential features you might want to add:
 
--   [ ] RSVP functionality
+-   [x] RSVP functionality (form available, needs backend integration)
+-   [ ] Backend API to save RSVPs automatically
 -   [ ] Admin panel for managing events through UI
 -   [ ] Calendar view
 -   [ ] Image uploads for events
--   [ ] Email notifications
+-   [ ] Email notifications when someone RSVPs
 -   [ ] Guest comments/discussion
 -   [ ] Event reminders
 -   [ ] Export events to calendar formats (iCal)

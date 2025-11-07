@@ -5,7 +5,12 @@
         "description": "Join us for an evening of board games, card games, and fun! Bring your favorite game or try something new. Snacks and drinks provided.",
         "date": "2025-11-15",
         "time": "7:00 PM",
-        "rsvpCount": 8,
+        "rsvps": [
+            { "name": "John & Sarah", "partySize": 2 },
+            { "name": "Mike", "partySize": 1 },
+            { "name": "The Johnsons", "partySize": 4 },
+            { "name": "Emily", "partySize": 1 }
+        ],
         "tags": ["games", "social", "indoor"],
         "status": "upcoming"
     },
@@ -15,7 +20,10 @@
         "description": "Celebrate the season with a festive potluck dinner! Bring your favorite dish to share. We'll provide the main course and drinks.",
         "date": "2025-12-20",
         "time": "6:00 PM",
-        "rsvpCount": 5,
+        "rsvps": [
+            { "name": "The Smiths", "partySize": 3 },
+            { "name": "Alex & Jordan", "partySize": 2 }
+        ],
         "tags": ["food", "holiday", "celebration"],
         "status": "upcoming"
     },
@@ -25,7 +33,11 @@
         "description": "Cozy movie marathon featuring classic films! Popcorn, blankets, and comfy seating available. Vote on movies in advance.",
         "date": "2025-11-22",
         "time": "2:00 PM",
-        "rsvpCount": 6,
+        "rsvps": [
+            { "name": "Chris & Pat", "partySize": 2 },
+            { "name": "Taylor", "partySize": 1 },
+            { "name": "The Wilsons", "partySize": 3 }
+        ],
         "tags": ["movies", "relaxation", "indoor"],
         "status": "upcoming"
     }
