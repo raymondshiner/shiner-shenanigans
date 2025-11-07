@@ -1,9 +1,11 @@
 import EventCard from '@/components/EventCard';
-import { getUpcomingEvents } from '@/lib/events';
+import { getUpcomingEvents } from '@/lib/sanity-events';
 import Link from 'next/link';
 
-export default function Home() {
-  const upcomingEvents = getUpcomingEvents();
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function Home() {
+  const upcomingEvents = await getUpcomingEvents();
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">

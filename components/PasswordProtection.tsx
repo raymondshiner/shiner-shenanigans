@@ -1,6 +1,7 @@
 'use client';
 
 import { verifyPassword } from '@/lib/auth';
+import { usePathname } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
 interface PasswordProtectionProps {
@@ -12,6 +13,10 @@ export default function PasswordProtection({ children, isAuthenticated }: Passwo
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
+
+  // Skip password protection for Sanity Studio admin route
+  const isAdminRoute = pathname.startsWith('/admin');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +35,7 @@ export default function PasswordProtection({ children, isAuthenticated }: Passwo
     });
   };
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !isAdminRoute) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-4">
         <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-md">

@@ -1,9 +1,11 @@
 import EventCard from '@/components/EventCard';
-import { getAllEvents } from '@/lib/events';
+import { getAllEvents } from '@/lib/sanity-events';
 import Link from 'next/link';
 
-export default function EventsPage() {
-  const allEvents = getAllEvents();
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function EventsPage() {
+  const allEvents = await getAllEvents();
 
   const upcomingEvents = allEvents.filter(e => e.status === 'upcoming');
   const completedEvents = allEvents.filter(e => e.status === 'completed');

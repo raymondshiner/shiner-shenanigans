@@ -1,11 +1,13 @@
 import RSVPForm from '@/components/RSVPForm';
-import { formatEventDate, getEventById } from '@/lib/events';
 import { getRSVPCount, getTotalGuests } from '@/lib/rsvp-utils';
+import { formatEventDate, getEventById } from '@/lib/sanity-events';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export default function EventDetailPage({ params }: { params: { id: string } }) {
-  const event = getEventById(params.id);
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function EventDetailPage({ params }: { params: { id: string } }) {
+  const event = await getEventById(params.id);
 
   if (!event) {
     notFound();

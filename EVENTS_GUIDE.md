@@ -2,81 +2,89 @@
 
 ## Overview
 
-This website is designed to host and manage events at your home. The system uses a simple JSON file for easy event management.
+This website is designed to host and manage events at your home. The system now uses **Sanity CMS** for easy event management through a beautiful admin interface!
 
 ## Features
 
 ### 🏠 Home Page
 
--   Welcome message with branding
--   Display of upcoming events
--   Quick navigation to all events
--   Information about your event venue
+- Welcome message with branding
+- Display of upcoming events
+- Quick navigation to all events
+- Information about your event venue
 
 ### 📅 Events Listing Page
 
--   View all events categorized by status:
-    -   Upcoming events
-    -   Past events
-    -   Cancelled events
--   Beautiful card layout with event previews
+- View all events categorized by status:
+    - Upcoming events
+    - Past events
+    - Cancelled events
+- Beautiful card layout with event previews
 
 ### 📝 Event Details Page
 
--   Full event information including:
-    -   Title and description
-    -   Date and time
-    -   Complete RSVP list with names and party sizes
-    -   Total guest count automatically calculated
-    -   Event tags for easy categorization
-    -   Status badges (upcoming, completed, cancelled)
-    -   **Interactive RSVP form** for upcoming events where guests can:
-        -   Enter their name or group name
-        -   Select their party size (1-20 people)
-        -   Submit their RSVP
+- Full event information including:
+    - Title and description
+    - Date and time
+    - Complete RSVP list with names and party sizes
+    - Total guest count automatically calculated
+    - Event tags for easy categorization
+    - Status badges (upcoming, completed, cancelled)
+    - **Interactive RSVP form** for upcoming events where guests can:
+        - Enter their name or group name
+        - Select their party size (1-20 people)
+        - Submit their RSVP
 
-## Managing Events
+## Managing Events with Sanity CMS
 
-### Adding/Editing Events
+### 🎯 Access Sanity Studio
 
-Events are stored in `/data/events.json`. To manage events, simply edit this file:
+Go to **http://localhost:3000/admin** to manage your events through a beautiful interface!
 
-```json
-{
-    "id": "unique-id",
-    "title": "Event Title",
-    "description": "Detailed description of the event",
-    "date": "2025-12-25",
-    "time": "7:00 PM",
-    "rsvps": [
-        { "name": "John & Sarah", "partySize": 2 },
-        { "name": "The Smiths", "partySize": 4 },
-        { "name": "Alex", "partySize": 1 }
-    ],
-    "tags": ["holiday", "dinner", "celebration"],
-    "status": "upcoming"
-}
-```
+### Adding a New Event
+
+1. Click **"Event"** in the left sidebar
+2. Click the **"Create"** button (+ icon)
+3. Fill in the event details:
+    - **Title**: Event name
+    - **Slug**: Click "Generate" to auto-create from title
+    - **Description**: Detailed event description
+    - **Date**: Pick from calendar
+    - **Time**: e.g., "7:00 PM"
+    - **Image** (optional): Upload event photo
+    - **Tags**: Type and press Enter (e.g., "holiday", "dinner")
+    - **Status**: Select status (upcoming, ongoing, completed, cancelled)
+    - **RSVPs** (optional): Add manually or leave empty
+4. Click **"Publish"** to save
+
+### Editing an Event
+
+1. Go to http://localhost:3000/admin
+2. Click on the event you want to edit
+3. Make your changes
+4. Click **"Publish"** to save changes
+
+````
 
 ### Event Properties
 
--   **id**: Unique identifier (string)
--   **title**: Event name
--   **description**: Detailed event description
--   **date**: Date in YYYY-MM-DD format
--   **time**: Time in any readable format (e.g., "7:00 PM")
--   **rsvps** (optional): Array of RSVP objects with:
-    -   **name**: Name of the person/group RSVPing
-    -   **partySize**: Number of people in their party
--   **tags** (optional): Array of tags for categorization
--   **status**: Event status - `upcoming`, `ongoing`, `completed`, or `cancelled`
+- **id**: Unique identifier (string)
+- **title**: Event name
+- **description**: Detailed event description
+- **date**: Date in YYYY-MM-DD format
+- **time**: Time in any readable format (e.g., "7:00 PM")
+- **rsvps** (optional): Array of RSVP objects with:
+    - **name**: Name of the person/group RSVPing
+    - **partySize**: Number of people in their party
+- **tags** (optional): Array of tags for categorization
+- **status**: Event status - `upcoming`, `ongoing`, `completed`, or `cancelled`
 
 ### Status Options
 
--   **upcoming**: Future events that haven't happened yet
--   **ongoing**: Currently happening events
--   **completed**: Past events that took place
--   **cancelled**: Events that were cancelled
+- **upcoming**: Future events that haven't happened yet
+- **ongoing**: Currently happening events
+- **completed**: Past events that took place
+- **cancelled**: Events that were cancelled
 
 ## Tips for Managing Events
 
@@ -110,12 +118,12 @@ To manually add someone's RSVP to an event, add a new object to the `rsvps` arra
     "name": "Taylor & Jamie",
     "partySize": 2
 }
-```
+````
 
 The event cards and details pages will automatically show:
 
--   Number of RSVPs (how many entries in the array)
--   Total guest count (sum of all party sizes)
+- Number of RSVPs (how many entries in the array)
+- Total guest count (sum of all party sizes)
 
 ## Customization
 
@@ -127,30 +135,36 @@ You can add custom tags to events and create filtering based on them in the futu
 
 The site uses Tailwind CSS. To customize colors or styles:
 
--   Edit component files in `/components`
--   Modify page files in `/app`
--   Update global styles in `/app/globals.css`
+- Edit component files in `/components`
+- Modify page files in `/app`
+- Update global styles in `/app/globals.css`
 
 ## Future Enhancements
 
 Potential features you might want to add:
 
--   [x] RSVP functionality (form available, needs backend integration)
--   [ ] Backend API to save RSVPs automatically
--   [ ] Admin panel for managing events through UI
--   [ ] Calendar view
--   [ ] Image uploads for events
--   [ ] Email notifications when someone RSVPs
--   [ ] Guest comments/discussion
--   [ ] Event reminders
--   [ ] Export events to calendar formats (iCal)
+- [x] RSVP functionality (form available, needs backend integration)
+- [ ] Backend API to save RSVPs automatically
+- [ ] Admin panel for managing events through UI
+- [ ] Calendar view
+- [ ] Image uploads for events
+- [ ] Email notifications when someone RSVPs
+- [ ] Guest comments/discussion
+- [ ] Event reminders
+- [ ] Export events to calendar formats (iCal)
+
+## 📚 Additional Resources
+
+- **Sanity CMS Guide**: See `SANITY_GUIDE.md` for detailed Sanity documentation
+- **Quick Reference**: See `SANITY_QUICK_REF.md` for quick commands and queries
 
 ## Need Help?
 
 The website is built with:
 
--   **Next.js 14**: React framework
--   **TypeScript**: Type-safe JavaScript
--   **Tailwind CSS**: Utility-first CSS framework
+- **Next.js 14**: React framework
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **Sanity CMS**: Headless content management system
 
-To make changes to the events, simply edit `/data/events.json` and save. The changes will appear immediately on the website!
+To manage events, go to **http://localhost:3000/admin**. Changes appear on your website within 60 seconds!

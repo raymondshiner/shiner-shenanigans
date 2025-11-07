@@ -1,6 +1,7 @@
 import PasswordProtection from "@/components/PasswordProtection";
 import { checkAuth } from "@/lib/auth";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isAuthenticated = await checkAuth();
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
+
+  // Skip password protection for Sanity Studio (/admin route)
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isAuthenticated = isAdminRoute || await checkAuth();
 
   return (
     <html lang="en">
