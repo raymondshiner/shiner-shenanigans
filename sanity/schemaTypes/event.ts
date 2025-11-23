@@ -40,6 +40,12 @@ export const eventType = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: "location",
+            title: "Location",
+            type: "string",
+            description: "Event location or address",
+        }),
+        defineField({
             name: "image",
             title: "Event Image",
             type: "image",

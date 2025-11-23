@@ -32,6 +32,13 @@ export default function EventCard({ event }: EventCardProps) {
               <S.ClockIcon />
               <span>{event.time}</span>
             </S.InfoItem>
+
+            {event.location && (
+              <S.InfoItem>
+                <S.LocationIcon />
+                <span>{event.location}</span>
+              </S.InfoItem>
+            )}
           </S.InfoSection>
 
           {rsvpCount > 0 && (

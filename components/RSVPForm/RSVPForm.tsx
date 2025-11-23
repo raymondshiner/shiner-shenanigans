@@ -1,5 +1,6 @@
 'use client';
 
+import { submitRSVP } from '@/lib/actions/rsvp-actions';
 import { useState } from 'react';
 import * as S from './RSVPForm.styles';
 
@@ -30,17 +31,30 @@ export default function RSVPForm({ eventId, eventTitle }: RSVPFormProps) {
     setIsSubmitting(true);
     setMessage(null);
 
-    // Simulate API call - in a real app, this would save to a database
-    // For now, we'll just show a success message
-    setTimeout(() => {
+    try {
+      const result = await submitRSVP(eventId, name, partySize);
+
+      if (result.success) {
+        setMessage({
+          type: 'success',
+          text: result.message || 'RSVP submitted successfully!'
+        });
+        setName('');
+        setPartySize(1);
+      } else {
+        setMessage({
+          type: 'error',
+          text: result.error || 'Failed to submit RSVP'
+        });
+      }
+    } catch (error) {
       setMessage({
-        type: 'success',
-        text: `Thanks ${name}! Your RSVP for ${partySize} ${partySize === 1 ? 'person' : 'people'} has been recorded. Please note: You'll need to manually add this to the events.json file.`
+        type: 'error',
+        text: 'An unexpected error occurred. Please try again.'
       });
-      setName('');
-      setPartySize(1);
+    } finally {
       setIsSubmitting(false);
-    }, 500);
+    }
   };
 
   return (
@@ -94,10 +108,6 @@ export default function RSVPForm({ eventId, eventTitle }: RSVPFormProps) {
           {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
         </S.SubmitButton>
       </S.Form>
-
-      <S.FooterNote>
-        Note: This is a static site. RSVPs will need to be manually added to the events.json file by the site administrator.
-      </S.FooterNote>
     </S.Container>
   );
 }

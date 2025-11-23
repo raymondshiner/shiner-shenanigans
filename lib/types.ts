@@ -14,6 +14,7 @@ export interface Event {
     description: string;
     date: string;
     time: string;
+    location?: string;
     rsvps?: RSVP[];
     image?: any;
     tags?: string[];
