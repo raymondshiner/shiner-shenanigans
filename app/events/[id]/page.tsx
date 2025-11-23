@@ -1,4 +1,4 @@
-import RSVPForm from '@/components/RSVPForm';
+import RSVPForm from '@/components/RSVPForm/RSVPForm';
 import { getRSVPCount, getTotalGuests } from '@/lib/rsvp-utils';
 import { formatEventDate, getEventById } from '@/lib/sanity-events';
 import Link from 'next/link';

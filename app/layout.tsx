@@ -1,4 +1,4 @@
-import PasswordProtection from "@/components/PasswordProtection";
+import PasswordProtection from "@/components/PasswordProtection/PasswordProtection";
 import { checkAuth } from "@/lib/auth";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
